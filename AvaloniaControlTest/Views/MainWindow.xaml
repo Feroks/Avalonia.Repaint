@@ -1,13 +1,21 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:AvaloniaControlTest.ViewModels;assembly=AvaloniaControlTest"
-        Icon="resm:AvaloniaControlTest.Assets.avalonia-logo.ico"
-        Title="AvaloniaControlTest">
+﻿<Window
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="clr-namespace:AvaloniaControlTest.ViewModels;assembly=AvaloniaControlTest"
+	xmlns:controls="clr-namespace:AvaloniaControlTest.Controls"
+	Icon="resm:AvaloniaControlTest.Assets.avalonia-logo.ico"
+	Title="AvaloniaControlTest">
 
-  <Design.DataContext>
-    <vm:MainWindowViewModel/>
-  </Design.DataContext>
-  
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-  
+	<Design.DataContext>
+		<vm:MainWindowViewModel />
+	</Design.DataContext>
+
+	<StackPanel>
+		<TextBlock Text="Hovering over Textbox updates the value"
+		           HorizontalAlignment="Center"
+		           VerticalAlignment="Center"
+		           FontSize="16"/>
+		<controls:ListPageNavigation PageCount="3" />
+	</StackPanel>
+
 </Window>

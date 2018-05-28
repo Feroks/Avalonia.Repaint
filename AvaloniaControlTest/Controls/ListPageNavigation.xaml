@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:AvaloniaControlTest.Controls">
+	<StackPanel Orientation="Horizontal"
+	            HorizontalAlignment="Center"
+	      DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:ListPageNavigation}}">
+		<Button Content="&lt;"
+		        Width="60"
+		        Height="60"
+		        Command="{Binding PreviousPage, Mode=OneTime}" />
+		<TextBlock
+			MinWidth="80"
+			FontSize="40"
+			VerticalAlignment="Center"
+			TextAlignment="Center"
+			FontWeight="Bold"
+			Text="{Binding PageNumber, Mode=OneWay}" />
+		
+		<TextBox
+			MinWidth="80"
+			FontSize="40"
+			VerticalAlignment="Center"
+			TextAlignment="Center"
+			FontWeight="Bold"
+			Text="{Binding PageNumber, Mode=OneWay}" />
+		
+		<Button Content="&gt;"
+		        Width="60"
+		        Height="60"
+		        Command="{Binding NextPage, Mode=OneTime}" />
+	</StackPanel>
+</UserControl>
