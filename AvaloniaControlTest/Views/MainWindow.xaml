@@ -15,7 +15,7 @@
 		           HorizontalAlignment="Center"
 		           VerticalAlignment="Center"
 		           FontSize="16"/>
-		<controls:ListPageNavigation PageCount="3" />
+		<controls:ListPageNavigation />
 	</StackPanel>
 
 </Window>

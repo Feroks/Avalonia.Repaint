@@ -1,7 +1,6 @@
 ﻿using System.Reactive.Linq;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Data;
 using Avalonia.Markup.Xaml;
 using ReactiveUI;
 
@@ -13,7 +12,6 @@ namespace AvaloniaControlTest.Controls
 		{
 			AvaloniaXamlLoader.Load(this);
 			PageNumber = 1;
-			PageCount = 2;
 
 			var canExecutePreviousPage = this.WhenAnyValue(x => x.PageNumber)
 				.ObserveOn(RxApp.MainThreadScheduler)
@@ -25,7 +23,7 @@ namespace AvaloniaControlTest.Controls
 
 			var canExecuteNextPage = this.WhenAnyValue(x => x.PageNumber)
 				.ObserveOn(RxApp.MainThreadScheduler)
-				.Select(x => x < PageCount);
+				.Select(x => x < 3);
 			NextPage = ReactiveCommand.Create(() =>
 			{
 				PageNumber++;
@@ -35,16 +33,8 @@ namespace AvaloniaControlTest.Controls
 		public ReactiveCommand PreviousPage { get; }
 
 		public ReactiveCommand NextPage { get; }
-
-		public static readonly StyledProperty<int> PageCountProperty =
-			AvaloniaProperty.Register<ListPageNavigation, int>(nameof(PageCount),
-				defaultBindingMode: BindingMode.TwoWay);
-
-		public int PageCount
-		{
-			get => GetValue(PageCountProperty);
-			set => SetValue(PageCountProperty, value);
-		}
+		
+		public bool DisplayProgressBar { get; set; }
 
 		public static readonly StyledProperty<int> PageNumberProperty =
 			AvaloniaProperty.Register<ListPageNavigation, int>(nameof(PageNumber));
