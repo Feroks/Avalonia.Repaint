@@ -1,48 +1,35 @@
-﻿using System.Reactive.Linq;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using ReactiveUI;
 
 namespace AvaloniaControlTest.Controls
 {
 	public class ListPageNavigation : UserControl
 	{
+		private readonly TextBlock _textBlock;
+		private readonly TextBox _textBox;
+		private int _value;
+
 		public ListPageNavigation()
 		{
-			AvaloniaXamlLoader.Load(this);
-			PageNumber = 1;
-
-			var canExecutePreviousPage = this.WhenAnyValue(x => x.PageNumber)
-				.ObserveOn(RxApp.MainThreadScheduler)
-				.Select(x => x > 1);
-			PreviousPage = ReactiveCommand.Create(() =>
-			{
-				PageNumber--;
-			}, canExecutePreviousPage);
-
-			var canExecuteNextPage = this.WhenAnyValue(x => x.PageNumber)
-				.ObserveOn(RxApp.MainThreadScheduler)
-				.Select(x => x < 3);
-			NextPage = ReactiveCommand.Create(() =>
-			{
-				PageNumber++;
-			}, canExecuteNextPage);
+			_value = 0;
+			AvaloniaXamlLoaderPortableXaml.Load(this);
+			_textBlock = this.FindControl<TextBlock>("TextBlockField");
+			_textBox = this.FindControl<TextBox>("TextBoxField");
 		}
 
-		public ReactiveCommand PreviousPage { get; }
-
-		public ReactiveCommand NextPage { get; }
-		
-		public bool DisplayProgressBar { get; set; }
-
-		public static readonly StyledProperty<int> PageNumberProperty =
-			AvaloniaProperty.Register<ListPageNavigation, int>(nameof(PageNumber));
-
-		public int PageNumber
+		public void OnPrevious(object sender, RoutedEventArgs args)
 		{
-			get => GetValue(PageNumberProperty);
-			set => SetValue(PageNumberProperty, value);
+			var value = (--_value).ToString();
+			_textBlock.Text = value;
+			_textBox.Text = value;
+		}
+
+		public void OnNext(object sender, RoutedEventArgs args)
+		{
+			var value = (++_value).ToString();
+			_textBlock.Text = value;
+			_textBox.Text = value;
 		}
 	}
 }
