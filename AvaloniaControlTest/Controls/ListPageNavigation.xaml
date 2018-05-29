@@ -13,15 +13,13 @@
 				MinWidth="100"
 				FontSize="30"
 				VerticalAlignment="Center"
-				TextAlignment="Center"
-				FontWeight="Bold"/>
+				TextAlignment="Center"/>
 		    <TextBox
 		        x:Name="TextBoxField"
 		        MinWidth="100"
 		        FontSize="30"
 		        VerticalAlignment="Center"
-		        TextAlignment="Center"
-		        FontWeight="Bold"/>
+		        TextAlignment="Center"/>
 
 			<Button Content="&gt;"
 			        Width="60"
